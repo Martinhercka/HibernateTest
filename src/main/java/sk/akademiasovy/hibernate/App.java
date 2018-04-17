@@ -1,6 +1,7 @@
 package sk.akademiasovy.hibernate;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import sk.akademiasovy.hibernate.entity.Cars;
 import sk.akademiasovy.hibernate.entity.User;
 
@@ -15,15 +16,20 @@ public class App
 
         System.out.println( "Hello World!" );
 
+        System.out.println( "Hello World!" );
         Session session= HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        User user=new User();
-        user.setFirstName("Matej");
-        user.setLastName("Novak");
+        Transaction tx=session.beginTransaction();
+        User userNew= new User();
+        User user=session.load(User.class,4L);
+        user.setFirstName("Mtin");
+        userNew.setFirstName("Jozko");
+        userNew.setLastName("Mrkva");
+
+
         session.save(user);
-        session.getTransaction().commit();
-        //session.close();
-        System.out.println("new id: "+user.getId());
+        session.save(userNew);
+        session.update(user);
+        tx.commit();
 
         Cars BMW = new Cars();
         BMW.setBrand("BMW X6");
