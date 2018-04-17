@@ -1,6 +1,7 @@
 package sk.akademiasovy.hibernate;
 
 import org.hibernate.Session;
+import sk.akademiasovy.hibernate.entity.Cars;
 import sk.akademiasovy.hibernate.entity.User;
 
 /**
@@ -23,6 +24,13 @@ public class App
         session.getTransaction().commit();
         //session.close();
         System.out.println("new id: "+user.getId());
+
+        Cars BMW = new Cars();
+        BMW.setBrand("BMW X6");
+        BMW.setEngine(2.5);
+        session.save(BMW);
+        session.getTransaction().commit();
+
 
         User user2 = (User)session.get(User.class, 1L);
         // Hibernate.initialize(user2);

@@ -1,6 +1,7 @@
 package sk.akademiasovy.hibernate.entity;
 
 
+
 import javax.persistence.*;
 
 @Entity

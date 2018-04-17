@@ -3,6 +3,7 @@ package sk.akademiasovy.hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import sk.akademiasovy.hibernate.entity.Cars;
 import sk.akademiasovy.hibernate.entity.User;
 
 
@@ -18,6 +19,7 @@ public class HibernateUtil {
         try{
             Configuration configuration=new Configuration();
             configuration.addAnnotatedClass(User.class);
+            configuration.addAnnotatedClass(Cars.class);
             return  configuration.buildSessionFactory(new StandardServiceRegistryBuilder().build());
         }catch(Exception e){
             e.printStackTrace();
